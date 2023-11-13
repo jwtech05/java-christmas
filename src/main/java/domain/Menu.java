@@ -39,6 +39,38 @@ public class Menu {
         desserts.put("아이스크림", 5000);
     }
 
+    public Map<String, Integer> getAppetizers() {
+        return appetizers;
+    }
+
+    public void setAppetizers(Map<String, Integer> appetizers) {
+        this.appetizers = appetizers;
+    }
+
+    public Map<String, Integer> getMains() {
+        return mains;
+    }
+
+    public void setMains(Map<String, Integer> mains) {
+        this.mains = mains;
+    }
+
+    public Map<String, Integer> getDesserts() {
+        return desserts;
+    }
+
+    public void setDesserts(Map<String, Integer> desserts) {
+        this.desserts = desserts;
+    }
+
+    public Map<String, Integer> getBeverages() {
+        return beverages;
+    }
+
+    public void setBeverages(Map<String, Integer> beverages) {
+        this.beverages = beverages;
+    }
+
     private void appetizersMenu() {
         beverages.put("제로콜라", 3000);
         beverages.put("레드와인", 60000);
