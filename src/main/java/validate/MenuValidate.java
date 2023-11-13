@@ -67,10 +67,12 @@ public class MenuValidate {
 
     private boolean checkMenusContain(String orderName){
         Menu menu = new Menu();
+
         if(menu.getAppetizers().containsKey(orderName)) return true;
         if(menu.getMains().containsKey(orderName)) return true;
         if(menu.getBeverages().containsKey(orderName)) return true;
         if(menu.getDesserts().containsKey(orderName)) return true;
+
         return false;
     }
 

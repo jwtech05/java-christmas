@@ -7,9 +7,20 @@ public class OutputView {
     }
 
 
-    public void printMenu() {
+    public void printMenu(String guestOrderedMenu) {
         System.out.println("<주문 메뉴>");
-        // ...
+        System.out.println(guestOrderedMenu);
+
     }
-    // ...
+    public void printBeforeDiscountPrice(String calculatedPrice){
+        System.out.println("<할인 전 총주문 금액>");
+        System.out.println(calculatedPrice);
+
+    }
+
+    public void printPresentation(String guestOrderedMenu) {
+        System.out.println("<증정 메뉴>");
+        System.out.println(guestOrderedMenu);
+        System.out.println();
+    }
 }

@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -27,4 +28,6 @@ public class Guest {
     public void setMenu(Map<String,Integer> menu) {
         this.menu = menu;
     }
+
+
 }

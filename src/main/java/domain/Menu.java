@@ -16,27 +16,33 @@ public class Menu {
         this.beverages = new HashMap<>();
 
         appetizersMenu();
-        appetizersMain();
-        dessertsMain();
-        beveragesMain();
+        MainsMenu();
+        dessertsMenu();
+        beveragesMenu();
     }
 
-    private void beveragesMain() {
+    private void appetizersMenu() {
         appetizers.put("양송이수프", 6000);
         appetizers.put("타파스", 5500);
         appetizers.put("시저샐러드", 8000);
     }
 
-    private void dessertsMain() {
+    private void MainsMenu() {
         mains.put("티본스테이크", 55000);
         mains.put("바비큐립", 54000);
         mains.put("해산물파스타", 35000);
         mains.put("크리스마스파스타", 25000);
     }
 
-    private void appetizersMain() {
+    private void dessertsMenu() {
         desserts.put("초코케이크", 15000);
         desserts.put("아이스크림", 5000);
+    }
+
+    private void beveragesMenu() {
+        beverages.put("제로콜라", 3000);
+        beverages.put("레드와인", 60000);
+        beverages.put("샴페인", 25000);
     }
 
     public Map<String, Integer> getAppetizers() {
@@ -71,9 +77,4 @@ public class Menu {
         this.beverages = beverages;
     }
 
-    private void appetizersMenu() {
-        beverages.put("제로콜라", 3000);
-        beverages.put("레드와인", 60000);
-        beverages.put("샴페인", 25000);
-    }
 }
