@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Guest;
+import service.EventService;
 import service.GuestService;
 import service.PriceService;
 import view.InputView;
@@ -15,14 +16,16 @@ public class ChristmasController {
     OutputView outputView = new OutputView();
     GuestService guestService = new GuestService();
     PriceService priceService = new PriceService();
+    EventService eventService = new EventService();
     Guest guest;
 
-    public void run(){
+    public void run() {
         pickVisitDate();
         pickMenu();
         printOrderedMenu();
         beforeDiscountPrice();
         presentationMenu();
+        eventHistory();
     }
 
     private void pickVisitDate() {
@@ -33,11 +36,11 @@ public class ChristmasController {
 
     private void pickMenu() {
         String menu = inputView.readMenu();
-        Map<String,Integer> guestMenu = guestService.guestMenuUpdate(menu);
+        Map<String, Integer> guestMenu = guestService.guestMenuUpdate(menu);
         guest.setMenu(guestMenu);
     }
 
-    private void printOrderedMenu(){
+    private void printOrderedMenu() {
         String orderedMenu = guestService.guestOrderedMenuMessage(guest.getMenu());
         outputView.printMenu(orderedMenu);
     }
@@ -45,11 +48,19 @@ public class ChristmasController {
     private void beforeDiscountPrice() {
         List<Integer> orderedPrices = guestService.guestOrderedMenuPrice(guest.getMenu());
         List<Integer> orderedCnt = guestService.guestOrderedMenuCnt(guest.getMenu());
-        String calculatedMenu =priceService.priceBeforeDiscountMessage(orderedPrices,orderedCnt);
+        String calculatedMenu = priceService.priceBeforeDiscountMessage(orderedPrices, orderedCnt);
         outputView.printBeforeDiscountPrice(calculatedMenu);
     }
 
-    private void presentationMenu(){
+    private void presentationMenu() {
+        List<Integer> orderedPrices = guestService.guestOrderedMenuPrice(guest.getMenu());
+        List<Integer> orderedCnt = guestService.guestOrderedMenuCnt(guest.getMenu());
+        int calculatedPrice = priceService.priceBeforeDiscount(orderedPrices, orderedCnt);
+        String presentationResult = eventService.overPricePresentationEvent(calculatedPrice);
+        outputView.printPresentation(presentationResult);
+    }
+
+    private void eventHistory() {
 
     }
 }

@@ -15,12 +15,16 @@ public class OutputView {
     public void printBeforeDiscountPrice(String calculatedPrice){
         System.out.println("<할인 전 총주문 금액>");
         System.out.println(calculatedPrice);
-
+        System.out.println();
     }
 
-    public void printPresentation(String guestOrderedMenu) {
+    public void printPresentation(String presentationResult) {
         System.out.println("<증정 메뉴>");
-        System.out.println(guestOrderedMenu);
+        System.out.println(presentationResult);
         System.out.println();
+    }
+
+    public void printEventHistory(){
+        System.out.println("<혜택 내역>");
     }
 }
