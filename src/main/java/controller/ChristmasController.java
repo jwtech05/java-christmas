@@ -67,10 +67,8 @@ public class ChristmasController {
     }
 
     private void eventHistory() {
-        String dDayDiscountEvent = eventService.dDayDiscountEventMessage(guest.getDate());
-        String dayDiscountEvent = eventService.weekendOrNot(guest.getDate(), guest.getMenu());
-        String starDiscountEvent = eventService.starDiscountMessage(guest.getDate());
-        String overPricePresentationEvent = eventService.overPricePresentationEventMessage(price.getTotalPrice());
+        String totalDiscountEvent = eventService.totalDiscountEventMessage(guest.getDate(),price.getTotalPrice(),guest.getMenu());
+        outputView.printEventHistory(totalDiscountEvent);
     }
 
 }
