@@ -21,6 +21,8 @@ public class ChristmasController {
     Guest guest;
     Price price;
 
+
+
     public void run() {
         pickVisitDate();
         pickMenu();
@@ -58,6 +60,8 @@ public class ChristmasController {
         List<Integer> orderedPrices = guestService.guestOrderedMenuPrice(guest.getMenu());
         List<Integer> orderedCnt = guestService.guestOrderedMenuCnt(guest.getMenu());
         int calculatedPrice = priceService.priceBeforeDiscount(orderedPrices, orderedCnt);
+        price = new Price();
+        price.setTotalPrice(calculatedPrice);
         String presentationResult = eventService.overPricePresentationEvent(calculatedPrice);
         outputView.printPresentation(presentationResult);
     }
@@ -66,6 +70,7 @@ public class ChristmasController {
         String dDayDiscountEvent = eventService.dDayDiscountEventMessage(guest.getDate());
         String dayDiscountEvent = eventService.weekendOrNot(guest.getDate(), guest.getMenu());
         String starDiscountEvent = eventService.starDiscountMessage(guest.getDate());
+        String overPricePresentationEvent = eventService.overPricePresentationEventMessage(price.getTotalPrice());
     }
 
 }

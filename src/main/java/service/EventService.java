@@ -91,4 +91,12 @@ public class EventService {
 
         return message;
     }
+
+    public String overPricePresentationEventMessage(int price){
+        String presentation = overPricePresentationEvent(price);
+        if(presentation.equals("없음")){
+            return "";
+        }
+        return String.format("특별 할인 : -25,000원");
+    }
 }
