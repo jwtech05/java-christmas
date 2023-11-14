@@ -158,4 +158,14 @@ public class EventService {
         }
         return String.format("-%,d원",totalDiscount);
     }
+
+    public String eventBadgeMessage(int date, int price, Map<String ,Integer> guestMenu){
+        int totalPrice = totalDiscountPrice(date,price,guestMenu);
+
+        if(totalPrice >= 20000) return "산타";
+        if(totalPrice >= 10000) return "트리";
+        if(totalPrice >= 5000) return "별";
+
+        return "없음";
+    }
 }

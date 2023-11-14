@@ -40,4 +40,10 @@ public class OutputView {
         System.out.println(afterDiscountPriceMessage);
         System.out.println();
     }
+
+    public void printEventBadge(String eventBadgeMessage){
+        System.out.println("<12월 이벤트 배지>");
+        System.out.println(eventBadgeMessage);
+        System.out.println();
+    }
 }

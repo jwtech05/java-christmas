@@ -31,6 +31,7 @@ public class ChristmasController {
         eventHistory();
         everyEventDiscountPrice();
         afterDiscountPrice();
+        eventBadge();
     }
 
 
@@ -82,4 +83,11 @@ public class ChristmasController {
         String afterDiscountEvent = priceService.priceAfterDiscountMessage(calculatedPrice, everyDiscountPrice);
         outputView.printAfterDiscountPrice(afterDiscountEvent);
     }
+
+    private void eventBadge() {
+        int calculatedPrice = priceService.priceBeforeDiscount(guestService.guestOrderedMenuPrice(guest.getMenu()), guestService.guestOrderedMenuCnt(guest.getMenu()));
+        String eventBadgeEvent = eventService.eventBadgeMessage(guest.getDate(), calculatedPrice, guest.getMenu());
+        outputView.printEventBadge(eventBadgeEvent);
+    }
+
 }
