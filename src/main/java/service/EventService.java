@@ -18,9 +18,10 @@ public class EventService {
     }
     // 크리스마스 디데이 할인 금액 반환
     private int dDayDiscount(int date){
+        if(date > 25) return 0;
+
         int originDiscount = 1000;
         originDiscount += ((date-1) * 100);
-
 
         return originDiscount;
     }
