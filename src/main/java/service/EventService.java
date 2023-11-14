@@ -76,4 +76,19 @@ public class EventService {
 
         return message;
     }
+
+    public int starDiscount(int date){
+        int[] starDay = {3,10,17,24,25,31};
+        for(int i=0; i<starDay.length; i++){
+            if(starDay[i] == date) return 1000;
+        }
+        return 0;
+    }
+
+    public String starDiscountMessage(int date){
+        int discount = starDiscount(date);
+        String message = String.format("특별 할인 : -%,d원",discount);
+
+        return message;
+    }
 }
