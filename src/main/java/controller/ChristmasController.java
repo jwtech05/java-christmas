@@ -22,7 +22,6 @@ public class ChristmasController {
     Price price;
 
 
-
     public void run() {
         pickVisitDate();
         pickMenu();
@@ -31,6 +30,7 @@ public class ChristmasController {
         presentationMenu();
         eventHistory();
         everyEventDiscountPrice();
+        afterDiscountPrice();
     }
 
 
@@ -52,16 +52,12 @@ public class ChristmasController {
     }
 
     private void beforeDiscountPrice() {
-        List<Integer> orderedPrices = guestService.guestOrderedMenuPrice(guest.getMenu());
-        List<Integer> orderedCnt = guestService.guestOrderedMenuCnt(guest.getMenu());
-        String calculatedMenu = priceService.priceBeforeDiscountMessage(orderedPrices, orderedCnt);
+        String calculatedMenu = priceService.priceBeforeDiscountMessage(guestService.guestOrderedMenuPrice(guest.getMenu()), guestService.guestOrderedMenuCnt(guest.getMenu()));
         outputView.printBeforeDiscountPrice(calculatedMenu);
     }
 
     private void presentationMenu() {
-        List<Integer> orderedPrices = guestService.guestOrderedMenuPrice(guest.getMenu());
-        List<Integer> orderedCnt = guestService.guestOrderedMenuCnt(guest.getMenu());
-        int calculatedPrice = priceService.priceBeforeDiscount(orderedPrices, orderedCnt);
+        int calculatedPrice = priceService.priceBeforeDiscount(guestService.guestOrderedMenuPrice(guest.getMenu()), guestService.guestOrderedMenuCnt(guest.getMenu()));
         price = new Price();
         price.setTotalPrice(calculatedPrice);
         String presentationResult = eventService.overPricePresentationEvent(calculatedPrice);
@@ -69,13 +65,21 @@ public class ChristmasController {
     }
 
     private void eventHistory() {
-        String totalDiscountEvent = eventService.totalDiscountEventMessage(guest.getDate(),price.getTotalPrice(),guest.getMenu());
+        int calculatedPrice = priceService.priceBeforeDiscount(guestService.guestOrderedMenuPrice(guest.getMenu()), guestService.guestOrderedMenuCnt(guest.getMenu()));
+        String totalDiscountEvent = eventService.totalDiscountEventMessage(guest.getDate(), calculatedPrice, guest.getMenu());
         outputView.printEventHistory(totalDiscountEvent);
     }
 
     private void everyEventDiscountPrice() {
-        String everyDiscountPrice = eventService.totalDiscountPriceMessage(guest.getDate(),price.getTotalPrice(),guest.getMenu());
+        int calculatedPrice = priceService.priceBeforeDiscount(guestService.guestOrderedMenuPrice(guest.getMenu()), guestService.guestOrderedMenuCnt(guest.getMenu()));
+        String everyDiscountPrice = eventService.totalDiscountPriceMessage(guest.getDate(), calculatedPrice, guest.getMenu());
         outputView.printEveryDiscountPrice(everyDiscountPrice);
     }
 
+    private void afterDiscountPrice() {
+        int calculatedPrice = priceService.priceBeforeDiscount(guestService.guestOrderedMenuPrice(guest.getMenu()), guestService.guestOrderedMenuCnt(guest.getMenu()));
+        int everyDiscountPrice = eventService.totalDiscountPrice(guest.getDate(), calculatedPrice, guest.getMenu());
+        String afterDiscountEvent = priceService.priceAfterDiscountMessage(calculatedPrice, everyDiscountPrice);
+        outputView.printAfterDiscountPrice(afterDiscountEvent);
+    }
 }

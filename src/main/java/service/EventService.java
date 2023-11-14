@@ -17,7 +17,7 @@ public class EventService {
         return "없음";
     }
     // 크리스마스 디데이 할인 금액 반환
-    public int dDayDiscount(int date){
+    private int dDayDiscount(int date){
         int originDiscount = 1000;
         originDiscount += ((date-1) * 100);
 
@@ -44,7 +44,7 @@ public class EventService {
         return weekDayDiscountMessage(guestMenu);
     }
     // 평일 할인 금액 반환
-    public int weekDayDiscount(Map<String ,Integer> guestMenu){
+    private int weekDayDiscount(Map<String ,Integer> guestMenu){
         int cnt = 0;
         List<String> guestMenuName =  new ArrayList<>(guestMenu.keySet());
         List<Integer> guestMenuQuantity = new ArrayList<>(guestMenu.values());
@@ -64,7 +64,7 @@ public class EventService {
         return message;
     }
     // 주말 할인 금액 반환
-    public int weekEndDiscount(Map<String ,Integer> guestMenu){
+    private int weekEndDiscount(Map<String ,Integer> guestMenu){
         int cnt = 0;
         List<String> guestMenuName =  new ArrayList<>(guestMenu.keySet());
         List<Integer> guestMenuQuantity = new ArrayList<>(guestMenu.values());
@@ -84,7 +84,7 @@ public class EventService {
         return message;
     }
     // 특별 할인 금액 반환
-    public int starDiscount(int date){
+    private int starDiscount(int date){
         int[] starDay = {3,10,17,24,25,31};
         for(int i=0; i<starDay.length; i++){
             if(starDay[i] == date) return 1000;
@@ -101,7 +101,7 @@ public class EventService {
         return message;
     }
     // 증정 할인 금액 반환
-    public int overPricePresentationDiscount(int price){
+    private int overPricePresentationDiscount(int price){
         if(price >= 120000) {
             return 25000;
         }

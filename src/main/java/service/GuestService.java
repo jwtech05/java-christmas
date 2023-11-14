@@ -62,4 +62,14 @@ public class GuestService {
 
         return 0;
     }
+
+    public int priceBeforeDiscount(List<Integer> prices, List<Integer> cnt){
+        int totalPrice = 0;
+        for(int i=0; i<prices.size(); i++){
+            totalPrice += (prices.get(i) * cnt.get(i));
+        }
+
+        return totalPrice;
+    }
+
 }

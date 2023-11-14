@@ -2,7 +2,7 @@ package domain;
 
 public class Price {
     private int totalPrice;
-    private int dDayDiscount;
+
     public Price() {
     }
 
@@ -14,11 +14,4 @@ public class Price {
         this.totalPrice = totalPrice;
     }
 
-    public int getdDayDiscount() {
-        return dDayDiscount;
-    }
-
-    public void setdDayDiscount(int dDayDiscount) {
-        this.dDayDiscount = dDayDiscount;
-    }
 }
