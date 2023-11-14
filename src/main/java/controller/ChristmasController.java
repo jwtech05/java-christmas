@@ -1,15 +1,12 @@
 package controller;
 
 import domain.Guest;
-import domain.Price;
 import service.EventService;
 import service.GuestService;
 import service.PriceService;
 import view.InputView;
 import view.OutputView;
 
-import javax.print.attribute.IntegerSyntax;
-import java.util.List;
 import java.util.Map;
 
 public class ChristmasController {
