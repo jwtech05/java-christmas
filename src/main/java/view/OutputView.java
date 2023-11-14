@@ -24,8 +24,9 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printEventHistory(String dDayDiscountMessage){
+    public void printEventHistory(String dDayDiscountMessage, String dateDiscountMessage){
         System.out.println("<혜택 내역>");
         System.out.println(dDayDiscountMessage);
+        System.out.println(dateDiscountMessage);
     }
 }
