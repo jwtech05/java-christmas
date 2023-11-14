@@ -17,15 +17,16 @@ public class EventService {
         return "없음";
     }
     // 크리스마스 디데이 할인 금액 반환
-    public int dDayDiscountEvent(int date){
+    public int dDayDiscount(int date){
         int originDiscount = 1000;
         originDiscount += ((date-1) * 100);
+
 
         return originDiscount;
     }
     // 크리스마스 디데이 할인 금액 메세지 반환
-    public String dDayDiscountEventMessage(int date){
-        int discount = dDayDiscountEvent(date);
+    public String dDayDiscountMessage(int date){
+        int discount = dDayDiscount(date);
         String message =  String.format("크리스마스 디데이 할인 : -%,d원",discount);
         if(discount == 0){
             return " ";
@@ -99,26 +100,53 @@ public class EventService {
         }
         return message;
     }
-    // 증정 메뉴 금액 메세지 반환
-    public String overPricePresentationEventMessage(int price){
-        String presentation = overPricePresentationEvent(price);
-        if(presentation.equals("없음")){
+    // 증정 할인 금액 반환
+    public int overPricePresentationDiscount(int price){
+        if(price >= 120000) {
+            return 25000;
+        }
+        return 0;
+    }
+    // 증정 할인 금액 메세지 반환
+    public String overPricePresentationDiscountMessage(int price){
+        int discount = overPricePresentationDiscount(price);
+        if(discount == 0){
             return " ";
         }
-        return String.format("증정 이벤트 : -25,000원");
+        return String.format("증정 이벤트 : -%,d원",discount);
     }
     // 모든 할인 메세지 반환
     public String totalDiscountEventMessage(int date, int price, Map<String ,Integer> guestMenu){
         StringBuilder stringBuilder = new StringBuilder();
 
-        if(!dDayDiscountEventMessage(date).equals(" ")) stringBuilder.append(dDayDiscountEventMessage(date)).append("\n");
+        if(!dDayDiscountMessage(date).equals(" ")) stringBuilder.append(dDayDiscountMessage(date)).append("\n");
         if(!weekendOrNot(date,guestMenu).equals(" ")) stringBuilder.append(weekendOrNot(date,guestMenu)).append("\n");
         if(!starDiscountMessage(date).equals(" ")) stringBuilder.append(starDiscountMessage(date)).append("\n");
-        if(!overPricePresentationEventMessage(price).equals(" ")) stringBuilder.append(overPricePresentationEventMessage(price)).append("\n");
+        if(!overPricePresentationDiscountMessage(price).equals(" ")) stringBuilder.append(overPricePresentationDiscountMessage(price)).append("\n");
         String totalMessage = stringBuilder.toString();
         if(totalMessage.isBlank()){
             return "없음\n";
         }
         return totalMessage;
+    }
+    //모든 할인 금액 반환
+    public int totalDiscountPrice(int date, int price, Map<String ,Integer> guestMenu){
+        int totalDiscount = 0;
+
+        totalDiscount += dDayDiscount(date);
+        totalDiscount += weekDayDiscount(guestMenu);
+        totalDiscount += weekEndDiscount(guestMenu);
+        totalDiscount += starDiscount(date);
+        totalDiscount += overPricePresentationDiscount(price);
+
+        return totalDiscount;
+    }
+
+    public String totalDiscountPriceMessage(int date, int price, Map<String ,Integer> guestMenu){
+        int totalDiscount = totalDiscountPrice(date, price, guestMenu);
+        if(totalDiscount == 0) {
+            return "0원";
+        }
+        return String.format("-%,d원",totalDiscount);
     }
 }

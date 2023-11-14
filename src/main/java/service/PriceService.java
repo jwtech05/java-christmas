@@ -19,7 +19,7 @@ public class PriceService {
 
         int totalPrice = priceBeforeDiscount(prices, cnt);
 
-        return totalPrice + "원";
+        return String.format("-%,d원",totalPrice);
     }
 
 

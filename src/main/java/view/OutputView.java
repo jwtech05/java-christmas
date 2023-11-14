@@ -29,4 +29,11 @@ public class OutputView {
         System.out.println(totalDiscountMessage);
 
     }
+
+    public void printEveryDiscountPrice(String totalDiscountPriceMessage){
+        System.out.println("<총혜택 금액>");
+        System.out.println(totalDiscountPriceMessage);
+        System.out.println();
+
+    }
 }

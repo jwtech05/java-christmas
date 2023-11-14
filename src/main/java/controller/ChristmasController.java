@@ -30,7 +30,9 @@ public class ChristmasController {
         beforeDiscountPrice();
         presentationMenu();
         eventHistory();
+        everyEventDiscountPrice();
     }
+
 
     private void pickVisitDate() {
         outputView.printHello();
@@ -69,6 +71,11 @@ public class ChristmasController {
     private void eventHistory() {
         String totalDiscountEvent = eventService.totalDiscountEventMessage(guest.getDate(),price.getTotalPrice(),guest.getMenu());
         outputView.printEventHistory(totalDiscountEvent);
+    }
+
+    private void everyEventDiscountPrice() {
+        String everyDiscountPrice = eventService.totalDiscountPriceMessage(guest.getDate(),price.getTotalPrice(),guest.getMenu());
+        outputView.printEveryDiscountPrice(everyDiscountPrice);
     }
 
 }
