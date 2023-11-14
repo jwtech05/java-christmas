@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Guest;
+import domain.Price;
 import service.EventService;
 import service.GuestService;
 import service.PriceService;
@@ -18,6 +19,7 @@ public class ChristmasController {
     PriceService priceService = new PriceService();
     EventService eventService = new EventService();
     Guest guest;
+    Price price;
 
     public void run() {
         pickVisitDate();
@@ -61,6 +63,9 @@ public class ChristmasController {
     }
 
     private void eventHistory() {
+        String dDayDiscountEvent = eventService.dDayDiscountEventMessage(guest.getDate());
+        String dayDiscountEvent = eventService.weekendOrNot(guest.getDate(), guest.getMenu());
 
     }
+
 }
