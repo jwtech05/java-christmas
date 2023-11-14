@@ -30,7 +30,9 @@ public class PriceService {
 
     public String priceAfterDiscountMessage(int beforeDiscountPrice, int everyDiscountPrice){
         int afterTotalPrice = priceAfterDiscount(beforeDiscountPrice,everyDiscountPrice);
-
+        if(beforeDiscountPrice >= 120000){
+            afterTotalPrice += 25000;
+        }
         return String.format("%,d원",afterTotalPrice);
     }
 

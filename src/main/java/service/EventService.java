@@ -33,6 +33,16 @@ public class EventService {
         }
         return message;
     }
+    // 주말인지 평일인지 구별하여 해당 금액 반환
+    private int weekendOrNotPrice(int date, Map<String ,Integer> guestMenu){
+        int[] weekend = {1,2,8,9,15,16,22,23,29,30};
+        for(int i=0; i<weekend.length; i++){
+            if(weekend[i] == date){
+                return weekEndDiscount(guestMenu);
+            }
+        }
+        return weekDayDiscount(guestMenu);
+    }
     //주말인지 평일인지 구별하여 해당 메세지 반환
     public String weekendOrNot(int date, Map<String ,Integer> guestMenu){
         int[] weekend = {1,2,8,9,15,16,22,23,29,30};
@@ -134,8 +144,7 @@ public class EventService {
         int totalDiscount = 0;
 
         totalDiscount += dDayDiscount(date);
-        totalDiscount += weekDayDiscount(guestMenu);
-        totalDiscount += weekEndDiscount(guestMenu);
+        totalDiscount += weekendOrNotPrice(date, guestMenu);
         totalDiscount += starDiscount(date);
         totalDiscount += overPricePresentationDiscount(price);
 
