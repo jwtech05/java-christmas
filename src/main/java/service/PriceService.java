@@ -31,9 +31,11 @@ public class PriceService {
     // 할인 후 총주문 금액 메세지 반환
     public String priceAfterDiscountMessage(int beforeDiscountPrice, int everyDiscountPrice) {
         int afterTotalPrice = priceAfterDiscount(beforeDiscountPrice, everyDiscountPrice);
+
         if (beforeDiscountPrice >= 120000) {
             afterTotalPrice += 25000;
         }
+
         return String.format("%,d원", afterTotalPrice);
     }
 

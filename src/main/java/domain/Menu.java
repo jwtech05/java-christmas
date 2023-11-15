@@ -49,32 +49,17 @@ public class Menu {
         return appetizers;
     }
 
-    public void setAppetizers(Map<String, Integer> appetizers) {
-        this.appetizers = appetizers;
-    }
-
     public Map<String, Integer> getMains() {
         return mains;
-    }
-
-    public void setMains(Map<String, Integer> mains) {
-        this.mains = mains;
     }
 
     public Map<String, Integer> getDesserts() {
         return desserts;
     }
 
-    public void setDesserts(Map<String, Integer> desserts) {
-        this.desserts = desserts;
-    }
-
     public Map<String, Integer> getBeverages() {
         return beverages;
     }
 
-    public void setBeverages(Map<String, Integer> beverages) {
-        this.beverages = beverages;
-    }
 
 }

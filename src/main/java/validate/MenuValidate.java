@@ -16,7 +16,6 @@ public class MenuValidate {
 
 
     public MenuValidate(String orderMenu) {
-
         patternValidate(orderMenu);
         duplicateValidate(orderMenu);
         singleMenuNumValidate(orderMenu);
@@ -29,8 +28,7 @@ public class MenuValidate {
 
     //메뉴 형식과 다른경우 에러 발생
     private void patternValidate(String orderMenu) {
-        String fixOrderMenu = orderMenu.replaceAll("\\s","");
-
+        String fixOrderMenu = orderMenu.replaceAll("\\s", "");
         Pattern pattern = Pattern.compile("([가-힣]+-\\d+,?)+");
         Matcher matcher = pattern.matcher(fixOrderMenu);
 
@@ -43,6 +41,7 @@ public class MenuValidate {
     private void duplicateValidate(String orderMenu) {
         Map<String, Integer> inputOrders = inputMenuOrganize(orderMenu);
         List<String> orderNames = new ArrayList<>(inputOrders.keySet());
+
         for (int i = 0; i < orderNames.size() - 1; i++) {
             for (int j = i + 1; j < orderNames.size(); j++) {
                 if (orderNames.get(i).equals(orderNames.get(j))) {
@@ -56,6 +55,7 @@ public class MenuValidate {
     private void singleMenuNumValidate(String orderMenu) {
         Map<String, Integer> inputOrders = inputMenuOrganize(orderMenu);
         List<Integer> orderQuantity = new ArrayList<>(inputOrders.values());
+
         for (int i = 0; i < orderQuantity.size(); i++) {
             int quantity = orderQuantity.get(i);
             if (quantity <= 0) {
@@ -68,6 +68,7 @@ public class MenuValidate {
     private void existValidate(String orderMenu) {
         Map<String, Integer> inputOrders = inputMenuOrganize(orderMenu);
         List<String> orderNames = new ArrayList<>(inputOrders.keySet());
+
         for (String orderName : orderNames) {
             if (!checkMenusContain(orderName)) {
                 throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
@@ -76,30 +77,35 @@ public class MenuValidate {
     }
 
     // 이벤트 주의 사항 - 음료만 주문시 에러 발생
-    private void onlyDrinkBeveragesMenuValidate(String orderMenu){
+    private void onlyDrinkBeveragesMenuValidate(String orderMenu) {
         Map<String, Integer> inputOrders = inputMenuOrganize(orderMenu);
         List<String> orderNames = new ArrayList<>(inputOrders.keySet());
+
         int checkMenu = 0;
+
         for (String orderName : orderNames) {
-            if ((menu.getAppetizers().containsKey(orderName) || menu.getMains().containsKey(orderName) || menu.getDesserts().containsKey(orderName))){
+            if ((menu.getAppetizers().containsKey(orderName) || menu.getMains().containsKey(orderName) || menu.getDesserts().containsKey(orderName))) {
                 checkMenu++;
             }
         }
-        if(checkMenu == 0) throw new IllegalArgumentException("[ERROR] 이벤트 주의 사항 - 음료만 주문 시, 주문할 수 없습니다.");
+
+        if (checkMenu == 0) throw new IllegalArgumentException("[ERROR] 이벤트 주의 사항 - 음료만 주문 시, 주문할 수 없습니다.");
     }
 
-    private void limitTotalMenuNumValidate(String orderMenu){
+    private void limitTotalMenuNumValidate(String orderMenu) {
         Map<String, Integer> inputOrders = inputMenuOrganize(orderMenu);
         List<Integer> orderQuantity = new ArrayList<>(inputOrders.values());
+
         int quantity = 0;
+
         for (int i = 0; i < orderQuantity.size(); i++) {
             quantity += orderQuantity.get(i);
         }
-        if(quantity > 20) throw new IllegalArgumentException("[ERROR] 이벤트 주의 사항 - 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.");
+
+        if (quantity > 20) throw new IllegalArgumentException("[ERROR] 이벤트 주의 사항 - 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.");
     }
 
     private boolean checkMenusContain(String orderName) {
-
         if (menu.getAppetizers().containsKey(orderName)) return true;
         if (menu.getMains().containsKey(orderName)) return true;
         if (menu.getBeverages().containsKey(orderName)) return true;
@@ -119,6 +125,7 @@ public class MenuValidate {
 
             menuOrganize.put(foodName, quantity);
         }
+
         return menuOrganize;
     }
 }

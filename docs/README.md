@@ -27,9 +27,16 @@
 16. [x] 품목 별 메뉴를 출력하는 기능
 17. [x] 주문 메뉴의 출력 순서는 고객이 입력한 순서와 같게 하는 기능
 
-
+#### 입력 목록
+1. [x] 12월 중 식당 예상 방문 날짜는 언제인가요? 기능
+    1. [x] 방문할 날짜가 1 이상 31 아닐시 "[ERROR] 유효하지 않은 날짜입니다.다시 입력해 주세요." 출력 기능
+2. [x] 주문하실 메뉴와 개수를 알려 주세요 기능
+    1. [x] 메뉴판에 없는 메뉴 입력시 "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." 라는 에러 메세지 출력 기능
+    2. [x] 메뉴의 개수가 1 이하이거나 숫자가 아닌 경우  "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."라는 에러 메시지 출력 기능
+    3. [x] 메뉴 형식이 예시와 다른 경우, "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요. 출력 기능
+    4. [x] 중복 메뉴를 입력한 경우(e.g. 시저샐러드-1,시저샐러드-1), "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." 출력 가능
 #### 출력 목록
-1. [x] 주문 메뉴
+1. [x] 고객이 주문한 주문 메뉴
 2. [x] 할인 전 총주문 금액
 3. [x] 증정 메뉴
 4. [x] 혜택 내역
@@ -40,27 +47,17 @@
 9. [x] 12월 이벤트에서 주문할 수 있는 메뉴의 메뉴판
 
 
-#### 입력 목록
-1. [x] 12월 중 식당 예상 방문 날짜는 언제인가요? 기능
-    1. [x] 방문할 날짜가 1 이상 31 아닐시 "[ERROR] 유효하지 않은 날짜입니다.다시 입력해 주세요." 출력 기능
-2. [x] 주문하실 메뉴와 개수를 알려 주세요 기능
-    1. [x] 메뉴판에 없는 메뉴 입력시 "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." 라는 에러 메세지 출력 기능
-    2. [x] 메뉴의 개수가 1 이하이거나 숫자가 아닌 경우  "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."라는 에러 메시지 출력 기능
-    3. [x] 메뉴 형식이 예시와 다른 경우, "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요. 출력 기능
-    4. [x] 중복 메뉴를 입력한 경우(e.g. 시저샐러드-1,시저샐러드-1), "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." 출력 가능
-
-#### 테스트 목록
-* 서비스
-  * EventService
-    * [x] overPricePresentationEvent 메서드 단위 테스트
-    * [x] dDayDiscount 메서드 단위 테스트
-    * [x] weekendOrNot 메서드 단위 테스트
-    * [x] starDiscountMessage 메서드 단위 테스트
-    * [x] overPricePresentationDiscountMessage 메서드 단위 테스트
-    * [x] totalDiscountPriceMessage 메서드 단위 테스트
-    * [x] eventBadgeMessage 메서드 단위 테스트
-  * GuestService
-    * [x] guestMenuUpdate 메서드 단위 테스트
-    * [x] guestOrderedMenuMessage 메서드 단위 테스트
-    * [x] guestOrderedMenuCnt 메서드 단위 테스트
-    * [x] guestOrderedMenuPrice 메서드 단위 테스트
+### 테스트 목록
+* EventService
+  * [x] overPricePresentationEvent 메서드 단위 테스트
+  * [x] dDayDiscount 메서드 단위 테스트
+  * [x] weekendOrNot 메서드 단위 테스트
+  * [x] starDiscountMessage 메서드 단위 테스트
+  * [x] overPricePresentationDiscountMessage 메서드 단위 테스트
+  * [x] totalDiscountPriceMessage 메서드 단위 테스트
+  * [x] eventBadgeMessage 메서드 단위 테스트
+* GuestService
+  * [x] guestMenuUpdate 메서드 단위 테스트
+  * [x] guestOrderedMenuMessage 메서드 단위 테스트
+  * [x] guestOrderedMenuCnt 메서드 단위 테스트
+  * [x] guestOrderedMenuPrice 메서드 단위 테스트

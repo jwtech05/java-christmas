@@ -43,22 +43,20 @@ public class GuestService {
     }
 
     //고객이 주문한 메뉴의 가격 리스트 반환
-    public List<Integer> guestOrderedMenuPrice(Map<String, Integer> guestMenu) {
+    public List<Integer> guestOrderedMenuPrice(Map<String, Integer> guestMenu, Menu menu) {
         Map<String, Integer> orderedMenus = guestMenu;
         List<String> orderedNames = new ArrayList<>(orderedMenus.keySet());
         List<Integer> orderedMenuPrices = new ArrayList<>();
 
         for (int i = 0; i < orderedNames.size(); i++) {
-            orderedMenuPrices.add(menuPrices(orderedNames.get(i)));
+            orderedMenuPrices.add(menuPrices(orderedNames.get(i), menu));
         }
 
         return orderedMenuPrices;
     }
 
     //주문 메뉴의 가격 반환
-    public int menuPrices(String guestOrderedMenu) {
-        Menu menu = new Menu();
-
+    public int menuPrices(String guestOrderedMenu, Menu menu) {
         if (menu.getAppetizers().containsKey(guestOrderedMenu)) return menu.getAppetizers().get(guestOrderedMenu);
         if (menu.getMains().containsKey(guestOrderedMenu)) return menu.getMains().get(guestOrderedMenu);
         if (menu.getBeverages().containsKey(guestOrderedMenu)) return menu.getBeverages().get(guestOrderedMenu);

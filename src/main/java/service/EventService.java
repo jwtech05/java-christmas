@@ -14,6 +14,7 @@ public class EventService {
         if (totalPrice >= 120000) {
             return "샴페인 1개";
         }
+
         return "없음";
     }
 
@@ -22,6 +23,7 @@ public class EventService {
         if (date > 25) return 0;
 
         int originDiscount = 1000;
+
         originDiscount += ((date - 1) * 100);
 
         return originDiscount;
@@ -31,39 +33,46 @@ public class EventService {
     public String dDayDiscountMessage(int date) {
         int discount = dDayDiscount(date);
         String message = String.format("크리스마스 디데이 할인 : -%,d원", discount);
+
         if (discount == 0) {
             return " ";
         }
+
         return message;
     }
 
     // 주말인지 평일인지 구별하여 해당 금액 반환
     private int weekendOrNotPrice(int date, Map<String, Integer> guestMenu, Menu menu) {
         int[] weekend = {1, 2, 8, 9, 15, 16, 22, 23, 29, 30};
+
         for (int i = 0; i < weekend.length; i++) {
             if (weekend[i] == date) {
                 return weekEndDiscount(guestMenu, menu);
             }
         }
+
         return weekDayDiscount(guestMenu, menu);
     }
 
     //주말인지 평일인지 구별하여 해당 메세지 반환
     public String weekendOrNot(int date, Map<String, Integer> guestMenu, Menu menu) {
         int[] weekend = {1, 2, 8, 9, 15, 16, 22, 23, 29, 30};
+
         for (int j : weekend) {
             if (j == date) {
                 return weekEndDiscountMessage(guestMenu, menu);
             }
         }
+
         return weekDayDiscountMessage(guestMenu, menu);
     }
 
     // 평일 할인 금액 반환
     private int weekDayDiscount(Map<String, Integer> guestMenu, Menu menu) {
-        int cnt = 0;
         List<String> guestMenuName = new ArrayList<>(guestMenu.keySet());
         List<Integer> guestMenuQuantity = new ArrayList<>(guestMenu.values());
+        int cnt = 0;
+
         for (int i = 0; i < guestMenuName.size(); i++) {
             if (menu.getDesserts().containsKey(guestMenuName.get(i))) cnt += guestMenuQuantity.get(i);
         }
@@ -75,17 +84,20 @@ public class EventService {
     public String weekDayDiscountMessage(Map<String, Integer> guestMenu, Menu menu) {
         int discount = weekDayDiscount(guestMenu, menu);
         String message = String.format("평일 할인 : -%,d원", discount);
+
         if (discount == 0) {
             return " ";
         }
+
         return message;
     }
 
     // 주말 할인 금액 반환
     private int weekEndDiscount(Map<String, Integer> guestMenu, Menu menu) {
-        int cnt = 0;
         List<String> guestMenuName = new ArrayList<>(guestMenu.keySet());
         List<Integer> guestMenuQuantity = new ArrayList<>(guestMenu.values());
+        int cnt = 0;
+
         for (int i = 0; i < guestMenuName.size(); i++) {
             if (menu.getMains().containsKey(guestMenuName.get(i))) cnt += guestMenuQuantity.get(i);
         }
@@ -97,18 +109,22 @@ public class EventService {
     public String weekEndDiscountMessage(Map<String, Integer> guestMenu, Menu menu) {
         int discount = weekEndDiscount(guestMenu, menu);
         String message = String.format("주말 할인 : -%,d원", discount);
+
         if (discount == 0) {
             return " ";
         }
+
         return message;
     }
 
     // 특별 할인 금액 반환
     private int starDiscount(int date) {
         int[] starDay = {3, 10, 17, 24, 25, 31};
+
         for (int i = 0; i < starDay.length; i++) {
             if (starDay[i] == date) return 1000;
         }
+
         return 0;
     }
 
@@ -116,9 +132,11 @@ public class EventService {
     public String starDiscountMessage(int date) {
         int discount = starDiscount(date);
         String message = String.format("특별 할인 : -%,d원", discount);
+
         if (discount == 0) {
             return " ";
         }
+
         return message;
     }
 
@@ -127,15 +145,18 @@ public class EventService {
         if (price >= 120000) {
             return 25000;
         }
+
         return 0;
     }
 
     // 증정 할인 금액 메세지 반환
     public String overPricePresentationDiscountMessage(int price) {
         int discount = overPricePresentationDiscount(price);
+
         if (discount == 0) {
             return " ";
         }
+
         return String.format("증정 이벤트 : -%,d원", discount);
     }
 
