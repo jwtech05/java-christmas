@@ -8,24 +8,24 @@ import java.util.Map;
 
 public class MenuService {
 
-
+    //에피타이저 메뉴 리스트 문자열 반환
     public String appetizersMenu(Menu menu) {
-        return generateMenuItems(menu, menu.getAppetizers());
+        return generateMenuItems(menu.getAppetizers());
     }
-
+    //메인 메뉴 리스트 문자열 반환
     public String mainsMenu(Menu menu) {
-        return generateMenuItems(menu, menu.getMains());
+        return generateMenuItems(menu.getMains());
     }
-
+    //디저트 메뉴 리스트 문자열 반환
     public String dessertsMenu(Menu menu) {
-        return generateMenuItems(menu, menu.getDesserts());
+        return generateMenuItems(menu.getDesserts());
     }
-
+    //음료 메뉴 리스트 문자열 반환
     public String beveragesMenu(Menu menu) {
-        return generateMenuItems(menu, menu.getBeverages());
+        return generateMenuItems(menu.getBeverages());
     }
-
-    private String generateMenuItems(Menu menu, Map<String, Integer> menuItems) {
+    //메뉴 리스트 생성후 반환
+    private String generateMenuItems(Map<String, Integer> menuItems) {
         List<String> menuNames = new ArrayList<>(menuItems.keySet());
         StringBuilder stringBuilder = new StringBuilder();
 

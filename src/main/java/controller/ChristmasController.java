@@ -22,7 +22,6 @@ public class ChristmasController {
     Menu menu;
 
     public void run() {
-
         noticeAboutEvent();
         noticeMenu();
         pickVisitDate();

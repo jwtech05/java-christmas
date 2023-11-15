@@ -60,7 +60,7 @@
     * [x] totalDiscountPriceMessage 메서드 단위 테스트
     * [x] eventBadgeMessage 메서드 단위 테스트
   * GuestService
-    * [ ] guestMenuUpdate 메서드 단위 테스트
-    * [ ] guestOrderedMenuMessage 메서드 단위 테스트
-    * [ ] guestOrderedMenuCnt 메서드 단위 테스트
-    * [ ] guestOrderedMenuPrice 메서드 단위 테스트
+    * [x] guestMenuUpdate 메서드 단위 테스트
+    * [x] guestOrderedMenuMessage 메서드 단위 테스트
+    * [x] guestOrderedMenuCnt 메서드 단위 테스트
+    * [x] guestOrderedMenuPrice 메서드 단위 테스트
