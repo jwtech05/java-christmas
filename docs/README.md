@@ -52,12 +52,15 @@
 #### 테스트 목록
 * 서비스
   * EventService
-    * [x]overPricePresentationEvent 메서드 단위 테스트
-    * [x]dDayDiscount 메서드 단위 테스트
-    * [x]weekendOrNot 메서드 단위 테스트
-    * [x]starDiscountMessage 메서드 단위 테스트
-    * [x]overPricePresentationDiscountMessage 메서드 단위 테스트
-    * [x]totalDiscountPriceMessage 메서드 단위 테스트
-    * [x]eventBadgeMessage 메서드 단위 테스트
+    * [x] overPricePresentationEvent 메서드 단위 테스트
+    * [x] dDayDiscount 메서드 단위 테스트
+    * [x] weekendOrNot 메서드 단위 테스트
+    * [x] starDiscountMessage 메서드 단위 테스트
+    * [x] overPricePresentationDiscountMessage 메서드 단위 테스트
+    * [x] totalDiscountPriceMessage 메서드 단위 테스트
+    * [x] eventBadgeMessage 메서드 단위 테스트
   * GuestService
-    * [ ]
+    * [ ] guestMenuUpdate 메서드 단위 테스트
+    * [ ] guestOrderedMenuMessage 메서드 단위 테스트
+    * [ ] guestOrderedMenuCnt 메서드 단위 테스트
+    * [ ] guestOrderedMenuPrice 메서드 단위 테스트
