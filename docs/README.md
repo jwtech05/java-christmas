@@ -53,4 +53,8 @@
   * 이벤트서비스
     * [ ]overPricePresentationEvent 메서드 단위 테스트
     * [ ]dDayDiscount 메서드 단위 테스트
-    * 
+    * [ ]weekendOrNot 메서드 단위 테스트
+    * [ ]starDiscountMessage 메서드 단위 테스트
+    * [ ]overPricePresentationDiscountMessage 메서드 단위 테스트
+    * [ ]totalDiscountPriceMessage 메서드 단위 테스트
+    * [ ]eventBadgeMessage 메서드 단위 테스트
