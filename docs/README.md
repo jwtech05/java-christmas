@@ -25,6 +25,7 @@
 14.[x] 증정 메뉴 제공 해주는 기능
 15.[x] 할인 전 결제 금액을 계산하는 기능
 16. [x] 품목 별 메뉴를 출력하는 기능
+17. [x] 주문 메뉴의 출력 순서는 고객이 입력한 순서와 같게 하는 기능
 
 
 #### 출력 목록
@@ -50,11 +51,13 @@
 
 #### 테스트 목록
 * 서비스
-  * 이벤트서비스
-    * [ ]overPricePresentationEvent 메서드 단위 테스트
-    * [ ]dDayDiscount 메서드 단위 테스트
-    * [ ]weekendOrNot 메서드 단위 테스트
-    * [ ]starDiscountMessage 메서드 단위 테스트
-    * [ ]overPricePresentationDiscountMessage 메서드 단위 테스트
-    * [ ]totalDiscountPriceMessage 메서드 단위 테스트
-    * [ ]eventBadgeMessage 메서드 단위 테스트
+  * EventService
+    * [x]overPricePresentationEvent 메서드 단위 테스트
+    * [x]dDayDiscount 메서드 단위 테스트
+    * [x]weekendOrNot 메서드 단위 테스트
+    * [x]starDiscountMessage 메서드 단위 테스트
+    * [x]overPricePresentationDiscountMessage 메서드 단위 테스트
+    * [x]totalDiscountPriceMessage 메서드 단위 테스트
+    * [x]eventBadgeMessage 메서드 단위 테스트
+  * GuestService
+    * [ ]

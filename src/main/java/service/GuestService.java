@@ -8,7 +8,7 @@ public class GuestService {
 
     //고객이 주문한 메뉴 Map 으로 정리 후 반환
     public Map<String, Integer> guestMenuUpdate(String menu) {
-        Map<String, Integer> menuOrganize = new HashMap<>();
+        Map<String, Integer> menuOrganize = new LinkedHashMap<>();
         String[] menuItems = menu.split(",");
 
         for (String menuItem : menuItems) {
@@ -67,13 +67,5 @@ public class GuestService {
         return 0;
     }
 
-    public int priceBeforeDiscount(List<Integer> prices, List<Integer> cnt) {
-        int totalPrice = 0;
-        for (int i = 0; i < prices.size(); i++) {
-            totalPrice += (prices.get(i) * cnt.get(i));
-        }
-
-        return totalPrice;
-    }
 
 }
