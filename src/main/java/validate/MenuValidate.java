@@ -29,8 +29,10 @@ public class MenuValidate {
 
     //메뉴 형식과 다른경우 에러 발생
     private void patternValidate(String orderMenu) {
+        String fixOrderMenu = orderMenu.replaceAll("\\s","");
+
         Pattern pattern = Pattern.compile("([가-힣]+-\\d+,?)+");
-        Matcher matcher = pattern.matcher(orderMenu);
+        Matcher matcher = pattern.matcher(fixOrderMenu);
 
         if (!matcher.matches()) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");

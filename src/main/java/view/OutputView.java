@@ -7,8 +7,21 @@ public class OutputView {
         System.out.println("1. 총주문 금액 10,000원 이상부터 이벤트가 적용됩니다.");
         System.out.println("2. 음료만 주문 시, 주문할 수 없습니다.");
         System.out.println("3. 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.\n(e.g. 시저샐러드-1, 티본스테이크-1, 크리스마스파스타-1, 제로콜라-3, 아이스크림-1의 총개수는 7개)");
-        System.out.println("------------------------------------------------------------------------------------");
         System.out.println();
+    }
+
+    public void printNoticeMenu(String appetizerMenu, String mainMenu, String dessertMenu, String beverageMenu) {
+        System.out.println("************************************** 메뉴판 ***************************************");
+        System.out.println("<에피타이저>");
+        System.out.println(appetizerMenu);
+        System.out.println("<메인>");
+        System.out.println(mainMenu);
+        System.out.println("<디저트>");
+        System.out.println(dessertMenu);
+        System.out.println("<음료>");
+        System.out.println(beverageMenu);
+        System.out.println();
+        System.out.println("------------------------------------------------------------------------------------");
     }
 
     public void printHello() {

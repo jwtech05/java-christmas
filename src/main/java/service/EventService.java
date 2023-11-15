@@ -8,8 +8,6 @@ import java.util.Map;
 
 public class EventService {
 
-    Menu menu = new Menu();
-
     // 증정 메뉴 여부 판단하에 메세지 반환
     public String overPricePresentationEvent(int totalPrice) {
         // 이벤트 주의 사항 - 총주문 금액 10,000원 이상부터 이벤트가 적용됩니다
@@ -40,29 +38,29 @@ public class EventService {
     }
 
     // 주말인지 평일인지 구별하여 해당 금액 반환
-    private int weekendOrNotPrice(int date, Map<String, Integer> guestMenu) {
+    private int weekendOrNotPrice(int date, Map<String, Integer> guestMenu, Menu menu) {
         int[] weekend = {1, 2, 8, 9, 15, 16, 22, 23, 29, 30};
         for (int i = 0; i < weekend.length; i++) {
             if (weekend[i] == date) {
-                return weekEndDiscount(guestMenu);
+                return weekEndDiscount(guestMenu, menu);
             }
         }
-        return weekDayDiscount(guestMenu);
+        return weekDayDiscount(guestMenu, menu);
     }
 
     //주말인지 평일인지 구별하여 해당 메세지 반환
-    public String weekendOrNot(int date, Map<String, Integer> guestMenu) {
+    public String weekendOrNot(int date, Map<String, Integer> guestMenu, Menu menu) {
         int[] weekend = {1, 2, 8, 9, 15, 16, 22, 23, 29, 30};
-        for (int i = 0; i < weekend.length; i++) {
-            if (weekend[i] == date) {
-                return weekEndDiscountMessage(guestMenu);
+        for (int j : weekend) {
+            if (j == date) {
+                return weekEndDiscountMessage(guestMenu, menu);
             }
         }
-        return weekDayDiscountMessage(guestMenu);
+        return weekDayDiscountMessage(guestMenu, menu);
     }
 
     // 평일 할인 금액 반환
-    private int weekDayDiscount(Map<String, Integer> guestMenu) {
+    private int weekDayDiscount(Map<String, Integer> guestMenu, Menu menu) {
         int cnt = 0;
         List<String> guestMenuName = new ArrayList<>(guestMenu.keySet());
         List<Integer> guestMenuQuantity = new ArrayList<>(guestMenu.values());
@@ -74,8 +72,8 @@ public class EventService {
     }
 
     // 평일 할인 금액 메세지 반환
-    public String weekDayDiscountMessage(Map<String, Integer> guestMenu) {
-        int discount = weekDayDiscount(guestMenu);
+    public String weekDayDiscountMessage(Map<String, Integer> guestMenu, Menu menu) {
+        int discount = weekDayDiscount(guestMenu, menu);
         String message = String.format("평일 할인 : -%,d원", discount);
         if (discount == 0) {
             return " ";
@@ -84,7 +82,7 @@ public class EventService {
     }
 
     // 주말 할인 금액 반환
-    private int weekEndDiscount(Map<String, Integer> guestMenu) {
+    private int weekEndDiscount(Map<String, Integer> guestMenu, Menu menu) {
         int cnt = 0;
         List<String> guestMenuName = new ArrayList<>(guestMenu.keySet());
         List<Integer> guestMenuQuantity = new ArrayList<>(guestMenu.values());
@@ -96,8 +94,8 @@ public class EventService {
     }
 
     // 주말 할인 금액 메세지 반환
-    public String weekEndDiscountMessage(Map<String, Integer> guestMenu) {
-        int discount = weekEndDiscount(guestMenu);
+    public String weekEndDiscountMessage(Map<String, Integer> guestMenu, Menu menu) {
+        int discount = weekEndDiscount(guestMenu, menu);
         String message = String.format("주말 할인 : -%,d원", discount);
         if (discount == 0) {
             return " ";
@@ -142,11 +140,11 @@ public class EventService {
     }
 
     // 모든 할인 메세지 반환
-    public String totalDiscountEventMessage(int date, int price, Map<String, Integer> guestMenu) {
+    public String totalDiscountEventMessage(int date, int price, Map<String, Integer> guestMenu, Menu menu) {
         StringBuilder stringBuilder = new StringBuilder();
 
         if (!dDayDiscountMessage(date).equals(" ")) stringBuilder.append(dDayDiscountMessage(date)).append("\n");
-        if (!weekendOrNot(date, guestMenu).equals(" ")) stringBuilder.append(weekendOrNot(date, guestMenu)).append("\n");
+        if (!weekendOrNot(date, guestMenu,menu).equals(" ")) stringBuilder.append(weekendOrNot(date, guestMenu,menu)).append("\n");
         if (!starDiscountMessage(date).equals(" ")) stringBuilder.append(starDiscountMessage(date)).append("\n");
         if (!overPricePresentationDiscountMessage(price).equals(" ")) stringBuilder.append(overPricePresentationDiscountMessage(price)).append("\n");
 
@@ -158,11 +156,11 @@ public class EventService {
     }
 
     //모든 할인 금액 반환
-    public int totalDiscountPrice(int date, int price, Map<String, Integer> guestMenu) {
+    public int totalDiscountPrice(int date, int price, Map<String, Integer> guestMenu, Menu menu) {
         int totalDiscount = 0;
 
         totalDiscount += dDayDiscount(date);
-        totalDiscount += weekendOrNotPrice(date, guestMenu);
+        totalDiscount += weekendOrNotPrice(date, guestMenu,menu);
         totalDiscount += starDiscount(date);
         totalDiscount += overPricePresentationDiscount(price);
         // 이벤트 주의 사항 - 총주문 금액 10,000원 이상부터 이벤트가 적용됩니다.
@@ -171,16 +169,16 @@ public class EventService {
         return totalDiscount;
     }
 
-    public String totalDiscountPriceMessage(int date, int price, Map<String, Integer> guestMenu) {
-        int totalDiscount = totalDiscountPrice(date, price, guestMenu);
+    public String totalDiscountPriceMessage(int date, int price, Map<String, Integer> guestMenu, Menu menu) {
+        int totalDiscount = totalDiscountPrice(date, price, guestMenu, menu);
         if (totalDiscount == 0) {
             return "0원";
         }
         return String.format("-%,d원", totalDiscount);
     }
 
-    public String eventBadgeMessage(int date, int price, Map<String, Integer> guestMenu) {
-        int totalSalePrice = totalDiscountPrice(date, price, guestMenu);
+    public String eventBadgeMessage(int date, int price, Map<String, Integer> guestMenu, Menu menu) {
+        int totalSalePrice = totalDiscountPrice(date, price, guestMenu, menu);
         // 이벤트 주의 사항 - 총주문 금액 10,000원 이상부터 이벤트가 적용됩니다
         if (price < 10000) return "없음";
         if (totalSalePrice >= 20000) return "산타";
