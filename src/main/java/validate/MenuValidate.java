@@ -2,7 +2,6 @@ package validate;
 
 import domain.Menu;
 
-import javax.print.DocFlavor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,14 +12,31 @@ import java.util.regex.Pattern;
 public class MenuValidate {
 
     private String orderMenu;
+    private Menu menu = new Menu();
 
 
     public MenuValidate(String orderMenu) {
+
         patternValidate(orderMenu);
         duplicateValidate(orderMenu);
-        menuNumValidate(orderMenu);
+        singleMenuNumValidate(orderMenu);
         existValidate(orderMenu);
+        onlyDrinkBeveragesMenuValidate(orderMenu);
+
         this.orderMenu = orderMenu;
+    }
+
+    // 이벤트 주의 사항 - 음료만 주문시 에러 발생
+    private void onlyDrinkBeveragesMenuValidate(String orderMenu){
+        Map<String, Integer> inputOrders = InputMenuOrganize(orderMenu);
+        List<String> orderNames = new ArrayList<>(inputOrders.keySet());
+        int checkMenu = 0;
+        for (String orderName : orderNames) {
+            if ((menu.getAppetizers().containsKey(orderName) || menu.getMains().containsKey(orderName) || menu.getDesserts().containsKey(orderName))){
+                checkMenu++;
+            }
+        }
+        if(checkMenu == 0) throw new IllegalArgumentException("[ERROR] 이벤트 주의 사항 - 음료만 주문 시, 주문할 수 없습니다.");
     }
 
     //메뉴 형식과 다른경우 에러 발생
@@ -46,8 +62,8 @@ public class MenuValidate {
         }
     }
 
-    //메뉴 개수가 0이거나 그 이하일 경우 에러 발생
-    private void menuNumValidate(String orderMenu) {
+    //한 메뉴의 개수가 0이거나 그 이하일 경우 에러 발생
+    private void singleMenuNumValidate(String orderMenu) {
         Map<String, Integer> inputOrders = InputMenuOrganize(orderMenu);
         List<Integer> orderQuantity = new ArrayList<>(inputOrders.values());
         for (int i = 0; i < orderQuantity.size(); i++) {
@@ -70,7 +86,6 @@ public class MenuValidate {
     }
 
     private boolean checkMenusContain(String orderName) {
-        Menu menu = new Menu();
 
         if (menu.getAppetizers().containsKey(orderName)) return true;
         if (menu.getMains().containsKey(orderName)) return true;

@@ -22,7 +22,7 @@ public class ChristmasController {
         noticeAboutEvent();
         pickVisitDate();
         pickMenu();
-        printOrderedMenu();
+        orderedMenu();
         beforeDiscountPrice();
         presentationMenu();
         eventHistory();
@@ -47,7 +47,7 @@ public class ChristmasController {
         guest.setMenu(guestMenu);
     }
 
-    private void printOrderedMenu() {
+    private void orderedMenu() {
         String orderedMenu = guestService.guestOrderedMenuMessage(guest.getMenu());
         outputView.printMenu(orderedMenu);
     }
