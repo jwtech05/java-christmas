@@ -12,6 +12,7 @@ public class EventService {
 
     // 증정 메뉴 여부 판단하에 메세지 반환
     public String overPricePresentationEvent(int totalPrice) {
+        // 이벤트 주의 사항 - 총주문 금액 10,000원 이상부터 이벤트가 적용됩니다
         if (totalPrice >= 120000) {
             return "샴페인 1개";
         }
@@ -145,15 +146,14 @@ public class EventService {
         StringBuilder stringBuilder = new StringBuilder();
 
         if (!dDayDiscountMessage(date).equals(" ")) stringBuilder.append(dDayDiscountMessage(date)).append("\n");
-        if (!weekendOrNot(date, guestMenu).equals(" "))
-            stringBuilder.append(weekendOrNot(date, guestMenu)).append("\n");
+        if (!weekendOrNot(date, guestMenu).equals(" ")) stringBuilder.append(weekendOrNot(date, guestMenu)).append("\n");
         if (!starDiscountMessage(date).equals(" ")) stringBuilder.append(starDiscountMessage(date)).append("\n");
-        if (!overPricePresentationDiscountMessage(price).equals(" "))
-            stringBuilder.append(overPricePresentationDiscountMessage(price)).append("\n");
+        if (!overPricePresentationDiscountMessage(price).equals(" ")) stringBuilder.append(overPricePresentationDiscountMessage(price)).append("\n");
+
         String totalMessage = stringBuilder.toString();
-        if (totalMessage.isBlank()) {
-            return "없음\n";
-        }
+        // 이벤트 주의 사항 - 총주문 금액 10,000원 이상부터 이벤트가 적용됩니다
+        if (totalMessage.isBlank() || price < 10000) return "없음\n";
+
         return totalMessage;
     }
 
@@ -165,6 +165,8 @@ public class EventService {
         totalDiscount += weekendOrNotPrice(date, guestMenu);
         totalDiscount += starDiscount(date);
         totalDiscount += overPricePresentationDiscount(price);
+        // 이벤트 주의 사항 - 총주문 금액 10,000원 이상부터 이벤트가 적용됩니다.
+        if(price < 10000) totalDiscount = 0;
 
         return totalDiscount;
     }
@@ -178,11 +180,12 @@ public class EventService {
     }
 
     public String eventBadgeMessage(int date, int price, Map<String, Integer> guestMenu) {
-        int totalPrice = totalDiscountPrice(date, price, guestMenu);
-
-        if (totalPrice >= 20000) return "산타";
-        if (totalPrice >= 10000) return "트리";
-        if (totalPrice >= 5000) return "별";
+        int totalSalePrice = totalDiscountPrice(date, price, guestMenu);
+        // 이벤트 주의 사항 - 총주문 금액 10,000원 이상부터 이벤트가 적용됩니다
+        if (price < 10000) return "없음";
+        if (totalSalePrice >= 20000) return "산타";
+        if (totalSalePrice >= 10000) return "트리";
+        if (totalSalePrice >= 5000) return "별";
 
         return "없음";
     }
