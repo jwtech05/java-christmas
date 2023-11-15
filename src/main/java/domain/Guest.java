@@ -6,9 +6,9 @@ import java.util.Map;
 
 public class Guest {
     private int date;
-    private Map<String,Integer> menu;
-    public Guest(int date, Map<String,Integer> menu) {
+    private Map<String, Integer> menu;
 
+    public Guest(int date, Map<String, Integer> menu) {
         this.date = date;
         this.menu = menu;
     }
@@ -21,11 +21,11 @@ public class Guest {
         this.date = date;
     }
 
-    public Map<String,Integer> getMenu() {
+    public Map<String, Integer> getMenu() {
         return menu;
     }
 
-    public void setMenu(Map<String,Integer> menu) {
+    public void setMenu(Map<String, Integer> menu) {
         this.menu = menu;
     }
 

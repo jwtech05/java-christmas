@@ -16,10 +16,10 @@ public class ChristmasController {
     PriceService priceService = new PriceService();
     EventService eventService = new EventService();
     Guest guest;
-    Price price;
-
 
     public void run() {
+
+        noticeAboutEvent();
         pickVisitDate();
         pickMenu();
         printOrderedMenu();
@@ -31,6 +31,9 @@ public class ChristmasController {
         eventBadge();
     }
 
+    private void noticeAboutEvent() {
+        outputView.printNoticeAboutEvent();
+    }
 
     private void pickVisitDate() {
         outputView.printHello();
@@ -56,8 +59,6 @@ public class ChristmasController {
 
     private void presentationMenu() {
         int calculatedPrice = priceService.priceBeforeDiscount(guestService.guestOrderedMenuPrice(guest.getMenu()), guestService.guestOrderedMenuCnt(guest.getMenu()));
-        price = new Price();
-        price.setTotalPrice(calculatedPrice);
         String presentationResult = eventService.overPricePresentationEvent(calculatedPrice);
         outputView.printPresentation(presentationResult);
     }
